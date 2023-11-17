@@ -1,0 +1,29 @@
+name: Deploy Next.js to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-and-deploy:
+    name: Build React and Deploy to GitHub Pages
+    runs-on: linux
+    container:
+      image: nikolaik/python-nodejs:python3.11-nodejs20-bullseye
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install and Version Check
+        run: |
+          echo "node version"
+          node -v
+          echo "yarn version"
+          yarn -v
+      - name: Build and Export
+        run: npm run export
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out

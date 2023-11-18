@@ -9,7 +9,7 @@ on:
 jobs:
   build-and-deploy:
     name: Build React and Deploy to GitHub Pages
-    runs-on: linux
+    runs-on: ubuntu-latest
     container:
       image: nikolaik/python-nodejs:python3.11-nodejs20-bullseye
     steps:

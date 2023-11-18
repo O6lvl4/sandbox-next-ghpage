@@ -20,8 +20,10 @@ jobs:
           node -v
           echo "yarn version"
           yarn -v
+      - name: Install Dependencies
+        run: yarn install
       - name: Build and Export
-        run: npm run export
+        run: yarn export
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
